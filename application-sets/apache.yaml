@@ -22,9 +22,11 @@ spec:
         repoURL: git@github.com:meshachdamilare/local_cluster_argocd-apps.git
         targetRevision: '{{branch}}'
         path: applications/apache/{{cluster}}
+        plugin:
+          name: test
       destination:
         server: '{{url}}'
-        namespace: webservices
+        namespace: web
       syncPolicy:
         automated:
           prune: true
