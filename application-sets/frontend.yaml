@@ -21,7 +21,7 @@ spec:
       source:
         repoURL: git@github.com:meshachdamilare/local_cluster_argocd-apps.git
         targetRevision: '{{branch}}'
-        path: frontend/{{cluster}}
+        path: applications/frontend/{{cluster}}
       destination:
         server: '{{url}}'
         namespace: webservices

@@ -19,9 +19,9 @@ spec:
     spec:
       project: default
       source:
-        repoURL: git@github.com:meshachdamilare/local-minikube-argocd-apps.git
+        repoURL: git@github.com:meshachdamilare/local_cluster_argocd-apps.git
         targetRevision: '{{branch}}'
-        path: backend/{{cluster}}
+        path: applications/backend/{{cluster}}
       destination:
         server: '{{url}}'
         namespace: webservices

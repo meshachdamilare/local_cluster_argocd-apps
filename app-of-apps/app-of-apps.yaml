@@ -9,7 +9,7 @@ spec:
     server:  https://kubernetes.default.svc
     namespace: argocd
   source:
-    repoURL: git@github.com:meshachdamilare/local_cluster_playground.git
+    repoURL: git@github.com:meshachdamilare/local_cluster_argocd-apps.git
     targetRevision: main
     path: application-sets
   syncPolicy:
