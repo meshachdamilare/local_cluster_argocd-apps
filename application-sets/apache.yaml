@@ -21,7 +21,7 @@ spec:
       source:
         repoURL: git@github.com:meshachdamilare/local_cluster_argocd-apps.git
         targetRevision: '{{branch}}'
-        path: applications/apache/{{cluster}}
+        path: applications/apache/overlays/{{cluster}}
         plugin:
           name: kustomized-helm
       destination:
