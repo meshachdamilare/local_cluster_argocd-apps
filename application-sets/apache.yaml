@@ -23,7 +23,7 @@ spec:
         targetRevision: '{{branch}}'
         path: applications/apache/{{cluster}}
         plugin:
-          name: test
+          name: kustomized-helm
       destination:
         server: '{{url}}'
         namespace: web
