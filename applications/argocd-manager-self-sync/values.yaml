@@ -1897,24 +1897,7 @@ server:
 
   # -- Additional containers to be added to the server pod
   ## Note: Supports use of custom Helm templates
-  extraContainers: 
-    - name: kustomized-helm
-      command:
-        - "/var/run/argocd/argocd-cmp-server"
-      image: alpine/k8s:1.27.10
-      securityContext:
-        runAsNonRoot: true
-        runAsUser: 999
-      volumeMounts:
-        - mountPath: /var/run/argocd
-          name: var-files
-        - mountPath: /home/argocd/cmp-server/plugins
-          name: plugins
-        - mountPath: /home/argocd/cmp-server/config/plugin.yaml
-          subPath: plugin.yaml
-          name: kustomized-helm
-        - mountPath: /tmp
-          name: cmp-tmp
+  extraContainers: []
   # - name: my-sidecar
   #   image: nginx:latest
   # - name: lemonldap-ng-controller
@@ -1958,19 +1941,9 @@ server:
   #    subPath: kubelogin
 
   # -- Additional volumes to the server pod
-  volumes: 
+  volumes: []
   #  - name: custom-tools
   #    emptyDir: {}
-    - name: kustomized-helm
-      configMap:
-        name: kustomized-helm
-    - name: cmp-tmp
-      emptyDir: { }
-    - name: var-files
-      emptyDir: { }
-    - name: plugins
-      emptyDir: { }
-
 
   ## Argo CD server emptyDir volumes
   emptyDir:
@@ -2543,7 +2516,25 @@ repoServer:
   # -- Additional containers to be added to the repo server pod
   ## Ref: https://argo-cd.readthedocs.io/en/stable/user-guide/config-management-plugins/
   ## Note: Supports use of custom Helm templates
-  extraContainers: []
+  extraContainers: 
+    - name: kustomized-helm
+      command:
+        - "/var/run/argocd/argocd-cmp-server"
+      image: alpine/k8s:1.27.10
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 999
+      volumeMounts:
+        - mountPath: /var/run/argocd
+          name: var-files
+        - mountPath: /home/argocd/cmp-server/plugins
+          name: plugins
+        - mountPath: /home/argocd/cmp-server/config/plugin.yaml
+          subPath: plugin.yaml
+          name: kustomized-helm
+        - mountPath: /tmp
+          name: cmp-tmp
+
     # - name: cmp-my-plugin
     #   command:
     #     - "/var/run/argocd/argocd-cmp-server"
@@ -2592,12 +2583,14 @@ repoServer:
   volumeMounts: []
 
   # -- Additional volumes to the repo server pod
-  volumes: []
-  #  - name: argocd-cmp-cm
-  #    configMap:
-  #      name: argocd-cmp-cm
-  #  - name: cmp-tmp
-  #    emptyDir: {}
+  volumes: 
+    - name: kustomized-helm
+      configMap:
+        name: kustomized-helm
+    - name: cmp-tmp
+      emptyDir: { }
+
+
 
   # -- Volumes to be used in replacement of emptydir on default volumes
   existingVolumes: {}
