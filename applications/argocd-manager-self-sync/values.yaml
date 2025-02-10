@@ -2516,7 +2516,7 @@ repoServer:
   # -- Additional containers to be added to the repo server pod
   ## Ref: https://argo-cd.readthedocs.io/en/stable/user-guide/config-management-plugins/
   ## Note: Supports use of custom Helm templates
-  extraContainers: 
+  extraContainers:
     - name: kustomized-helm
       command:
         - "/var/run/argocd/argocd-cmp-server"
@@ -2588,7 +2588,7 @@ repoServer:
       configMap:
         name: kustomized-helm
     - name: cmp-tmp
-      emptyDir: { }
+      emptyDir: {}
 
 
 
