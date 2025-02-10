@@ -7,3 +7,6 @@ helmCharts:
     repo: https://argoproj.github.io/argo-helm
     version: 7.7.22  
     releaseName: argocd
+
+resources:
+  - argocd-cm-plugin.yaml
