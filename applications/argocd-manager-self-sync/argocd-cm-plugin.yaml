@@ -11,5 +11,5 @@ data:
       name: kustomized-helm
     spec:
       generate:
-        command: ["sh", "-c"]
-        args: ["kustomize build --enable-helm"]
+        command: [ "sh", "-c" ]
+        args: [ "kustomize build --enable-helm" ]   
